@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">СтройМаркет</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="cart.html">Корзина (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="catalog">
+            <div class="catalog-header">
+                <h2>Каталог товаров</h2>
+                <div class="view-controls">
+                    <button id="grid-view">Сетка</button>
+                    <button id="list-view">Список</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <label for="category-filter">Категория:</label>
+                <select id="category-filter">
+                    <option value="all">Все</option>
+                    <option value="building">Строительные материалы</option>
+                    <option value="tools">Инструменты</option>
+                </select>
+
+                <label for="price-filter">Цена:</label>
+                <input type="range" id="price-filter" min="0" max="5000" step="100">
+                <span id="price-value">до 5000 грн</span>
+            </div>
+
+            <div class="product-list">
+                <!-- Товары будут динамически загружены через JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCatalog();  // Загружаем товары
+        });
+    </script>
+</body>
+</html>

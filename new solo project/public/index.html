@@ -1,0 +1,69 @@
+<!--http://localhost:3000--> 
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - СтройМаркет</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">СтройМаркет</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="cart.html">Корзина (<span id="cart-count">0</span>)</a></li>
+                <li><a href="#" id="auth-button" class="button">Вход</a></li> <!-- Изменили ID кнопки на auth-button -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Добро пожаловать в СтройМаркет</h2>
+            <p>Мы предоставляем только качественные строительные материалы и инструменты. Лучшие цены и профессиональный сервис для вашего ремонта.</p>
+        </section>
+
+        <section class="about">
+            <h2>О нашей компании</h2>
+            <p>Наша компания имеет многолетний опыт работы на рынке строительных материалов и инструментов.</p>
+        </section>
+
+        <section class="section-images">
+            <img src="images/award1.jpg" alt="Награда за качество" class="animated-image">
+            <img src="images/award2.jpg" alt="Лучшая компания года" class="animated-image">
+            <img src="images/award3.jpg" alt="Награда за сервис" class="animated-image">
+        </section>
+
+        <section class="contact-info">
+            <h2>Контактная информация</h2>
+            <p>Свяжитесь с нами по номеру +38 (050) 123-45-67 или пишите на email: info@stroymarket.com</p>
+            <p>Мы находимся по адресу: ул. Канатная, 121a, Одесса</p>
+        </section>
+    </main>
+
+    <!-- Модальное окно для логина -->
+<div id="login-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2>Вход</h2>
+        <form id="login-form">
+            <input type="text" id="login" placeholder="Логин (почта или телефон)" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit" class="submit-btn">Войти</button>
+        </form>
+        <button id="register-button" class="register-btn">Регистрация</button>
+    </div>
+</div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

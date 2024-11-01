@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">СтройМаркет</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="registration-form">
+            <h2>Создайте аккаунт</h2>
+            <form action="/register" method="POST">
+                <label for="username">Логин:</label>
+                <input type="text" id="username" name="username" placeholder="Введите ваш логин" required>
+
+                <label for="email">Электронная почта:</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+
+                <label for="phone">Номер телефона:</label>
+                <!-- Добавлен паттерн для номера телефона -->
+                <input type="tel" id="phone" name="phone" pattern="\+?[0-9\s\-]{7,15}" placeholder="+380 (__) ___-____" required>
+
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

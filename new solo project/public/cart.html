@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">СтройМаркет</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart">
+            <h2>Ваша корзина</h2>
+            <div id="cart-items"></div>
+            <p>Итого: <span id="cart-total">0</span> грн</p>
+            <button class="btn" id="checkout-btn">Оформить заказ</button>
+        </section>
+
+        <!-- Модальное окно для оформления заказа -->
+        <div id="checkout-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <h2>Оформление заказа</h2>
+                <form id="checkout-form">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="address">Адрес доставки:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="phone">Контактный телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <button type="submit" class="btn">Отправить заказ</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCart();
+
+            // Показать модальное окно при нажатии на кнопку "Оформить заказ"
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeModal = document.getElementById('close-modal');
+
+            checkoutBtn.addEventListener('click', () => {
+                checkoutModal.style.display = 'block';
+            });
+
+            closeModal.addEventListener('click', () => {
+                checkoutModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === checkoutModal) {
+                    checkoutModal.style.display = 'none';
+                }
+            });
+
+            // Обработчик отправки формы
+            const checkoutForm = document.getElementById('checkout-form');
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+                const phone = document.getElementById('phone').value;
+
+                // Здесь можно отправить данные на сервер для обработки заказа
+                console.log({ name, address, phone });
+                alert('Заказ оформлен. Спасибо!');
+
+                // Закрываем модальное окно после оформления заказа
+                checkoutModal.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
