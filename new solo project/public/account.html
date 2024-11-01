@@ -22,7 +22,7 @@
         <section id="profile">
             <h2>Информация о профиле</h2>
             <div id="profile-info" class="profile-box">
-                <!-- Данные профиля будут загружены сюда -->
+                
             </div>
             <img id="avatar-image" src="" alt="Аватар пользователя" class="avatar">
 
@@ -42,13 +42,13 @@
 
             <h2>История покупок</h2>
             <div id="purchase-history" class="history-box">
-                <!-- История покупок будет отображена здесь -->
+                
             </div>
         </section>
     </main>
 
     <script>
-        // Функция для загрузки данных профиля
+        
         async function loadProfile() {
             try {
                 const response = await fetch('/profile-data');
@@ -56,7 +56,7 @@
 
                 const data = await response.json();
                 
-                // Отображаем данные профиля
+                
                 const profileInfo = document.getElementById('profile-info');
                 profileInfo.innerHTML = `
                     <p><strong>Имя:</strong> ${data.username}</p>
@@ -64,18 +64,18 @@
                     <p><strong>Телефон:</strong> ${data.phone}</p>
                 `;
 
-                // Отображаем аватар
+                
                 const avatarImage = document.getElementById('avatar-image');
                 if (data.avatar) {
                     avatarImage.src = data.avatar;
                     avatarImage.style.display = 'block';
                 }
 
-                // Заполняем поля формы редактирования профиля
+                
                 document.getElementById('email').value = data.email;
                 document.getElementById('phone').value = data.phone;
 
-                // Отображаем историю покупок
+                
                 const purchaseHistory = document.getElementById('purchase-history');
                 if (data.purchases.length > 0) {
                     purchaseHistory.innerHTML = data.purchases.map(purchase => `
@@ -93,7 +93,7 @@
             }
         }
 
-        // Функция для обновления данных профиля
+        
         async function updateProfile(event) {
             event.preventDefault();
 
@@ -107,7 +107,7 @@
 
                 if (response.ok) {
                     alert('Профиль успешно обновлен.');
-                    loadProfile(); // Обновляем информацию о профиле после сохранения
+                    loadProfile(); 
                 } else {
                     throw new Error('Ошибка при обновлении профиля.');
                 }
@@ -117,7 +117,7 @@
             }
         }
 
-        // Загружаем данные профиля при загрузке страницы
+        
         document.addEventListener('DOMContentLoaded', () => {
             loadProfile();
             document.getElementById('edit-profile-form').addEventListener('submit', updateProfile);

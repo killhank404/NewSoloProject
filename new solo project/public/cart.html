@@ -52,7 +52,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateCart();
 
-            // Показать модальное окно при нажатии на кнопку "Оформить заказ"
             const checkoutBtn = document.getElementById('checkout-btn');
             const checkoutModal = document.getElementById('checkout-modal');
             const closeModal = document.getElementById('close-modal');
@@ -71,7 +70,6 @@
                 }
             });
 
-            // Обработчик отправки формы
             const checkoutForm = document.getElementById('checkout-form');
             checkoutForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -79,11 +77,9 @@
                 const address = document.getElementById('address').value;
                 const phone = document.getElementById('phone').value;
 
-                // Здесь можно отправить данные на сервер для обработки заказа
                 console.log({ name, address, phone });
                 alert('Заказ оформлен. Спасибо!');
 
-                // Закрываем модальное окно после оформления заказа
                 checkoutModal.style.display = 'none';
             });
         });

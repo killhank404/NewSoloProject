@@ -1,15 +1,14 @@
-/* Общие стили для всего сайта */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f5f0; /* Сливочный фон */
+    background-color: #f9f5f0; 
     color: #333;
     line-height: 1.6;
 }
 
 header {
-    background-color: #fffcf7; /* Мягкий сливочный цвет для шапки */
+    background-color: #fffcf7; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
@@ -47,17 +46,17 @@ header .navbar a {
 }
 
 header .navbar a:hover {
-    background-color: #e9e4df; /* Более темный оттенок сливочного цвета */
+    background-color: #e9e4df; 
 }
 
 main {
-    padding-top: 80px; /* Отступ для фиксации шапки */
-    margin: 0 20px; /* Отступы от краев */
+    padding-top: 80px; 
+    margin: 0 20px; 
 }
 
-/* Стили для секции "Добро пожаловать" */
+
 .hero {
-    background-image: url('images/hero-bg.jpg'); /* Добавьте красивое фоновое изображение */
+    background-image: url('images/hero-bg.jpg'); 
     background-size: cover;
     background-position: center;
     color: #000000;
@@ -78,7 +77,7 @@ main {
     margin: 0 auto;
 }
 
-/* Стиль для секции "О компании" */
+
 .about {
     background-color: #fffcf7;
     padding: 50px 20px;
@@ -100,7 +99,6 @@ main {
     line-height: 1.8;
 }
 
-/* Фото-секции с анимацией при скролле */
 .section-images {
     display: flex;
     flex-wrap: wrap;
@@ -124,7 +122,6 @@ main {
     transform: translateY(0);
 }
 
-/* Контактная информация в конце страницы */
 .contact-info {
     background-color: #f7e6d4;
     padding: 50px 20px;
@@ -141,7 +138,6 @@ main {
     font-size: 1.2rem;
 }
 
-/* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
     .hero h2 {
         font-size: 2.2rem;
@@ -160,7 +156,6 @@ main {
     }
 }
 
-/* Общие стили (не меняем) */
 
 .catalog-header {
     display: flex;
@@ -200,7 +195,7 @@ main {
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    width: calc(33% - 40px); /* Товары будут располагаться в три колонки */
+    width: calc(33% - 40px); 
     text-align: center;
 }
 
@@ -236,7 +231,6 @@ main {
     background-color: #0056b3;
 }
 
-/* Стили для списка товаров */
 .product-list.list-view .product {
     width: 100%;
     display: flex;
@@ -255,10 +249,9 @@ main {
     text-align: left;
 }
 
-/* Для мобильных устройств */
 @media (max-width: 768px) {
     .product {
-        width: calc(50% - 20px); /* Два товара в строке на мобильных устройствах */
+        width: calc(50% - 20px); 
     }
 
     .product-list.list-view .product {
@@ -267,7 +260,6 @@ main {
     }
 }
 
-/* Стили для всех кнопок навигации (Главная, Каталог, Корзина, Вход) */
 .navbar a.button {
     color: #333;
     text-decoration: none;
@@ -278,7 +270,7 @@ main {
 }
 
 .navbar a.button:hover {
-    background-color: #e9e4df; /* Более темный оттенок сливочного цвета */
+    background-color: #e9e4df; 
 }
 
 /* Модальное окно для входа */
@@ -302,7 +294,7 @@ main {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    width: 300px; /* Уменьшаем ширину, чтобы поля не выходили за рамки */
+    width: 300px; 
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -311,14 +303,14 @@ main {
 .modal-content input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px; /* Добавляем больше отступов */
+    margin-bottom: 15px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 .modal-content button {
-    width: 100%; /* Кнопка занимает всю ширину */
+    width: 100%; 
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -342,31 +334,31 @@ main {
 
 /* Стили для кнопки "Регистрация" */
 .modal-content .register-btn {
-    width: 100%; /* Кнопка занимает всю ширину */
+    width: 100%; 
     padding: 10px;
-    background-color: #28a745; /* Зеленый цвет для кнопки регистрации */
+    background-color: #28a745; 
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px; /* Отступ сверху для разделения кнопок */
+    margin-top: 10px; 
     transition: background-color 0.3s ease;
 }
 
 .modal-content .register-btn:hover {
-    background-color: #218838; /* Темно-зеленый цвет при наведении */
+    background-color: #218838; 
 }
 
 /* Общие стили для модального окна */
 .modal {
-    display: none; /* Скрыто по умолчанию */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+    background-color: rgba(0, 0, 0, 0.5); 
     align-items: center;
     justify-content: center;
 }

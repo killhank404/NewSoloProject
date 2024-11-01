@@ -1,7 +1,6 @@
-// Инициализация корзины из localStorage или пустой массив
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Функция для добавления товара в корзину
 const addToCart = (productId) => {
     const products = getProducts();
     const product = products.find(p => p.id === productId);
@@ -12,7 +11,6 @@ const addToCart = (productId) => {
     updateCartCount();
 };
 
-// Обновление количества товаров в корзине
 const updateCartCount = () => {
     const cartCount = document.getElementById('cart-count');
     if (cartCount) {
@@ -20,7 +18,6 @@ const updateCartCount = () => {
     }
 };
 
-// Получение списка товаров с изображениями
 const getProducts = () => {
     return [
         // Товары
@@ -49,7 +46,6 @@ const getProducts = () => {
     ];
 };
 
-// Функция для фильтрации товаров
 const filterProducts = () => {
     const products = getProducts();
     const categoryFilter = document.getElementById('category-filter').value;
@@ -87,7 +83,6 @@ const switchView = (view) => {
     }
 };
 
-// Загрузка товаров в каталог
 const loadCatalog = () => {
     const products = getProducts();
     renderCatalog(products);
@@ -103,17 +98,15 @@ const loadCatalog = () => {
     if (listViewButton) listViewButton.addEventListener('click', () => switchView('list'));
 };
 
-// Обновление количества товаров в корзине при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
     loadCatalog();
 });
 
-/// Логика для кнопки Вход и модального окна
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
     loadCatalog();
-    checkAuthentication(); // Проверка аутентификации пользователя
+    checkAuthentication(); 
 
     const loginModal = document.getElementById('login-modal');
     const closeModal = document.getElementById('close-modal');
@@ -142,14 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Обработчик отправки формы логина
 document.getElementById('login-form')?.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const login = document.getElementById('login').value;
     const password = document.getElementById('password').value;
 
-    // Отправляем POST-запрос на сервер для аутентификации
     const response = await fetch('/login', {
         method: 'POST',
         headers: {
@@ -160,13 +151,11 @@ document.getElementById('login-form')?.addEventListener('submit', async function
 
     if (response.ok) {
         document.getElementById('login-modal')?.classList.remove('show');
-        window.location.href = '/profile'; // Перенаправляем на страницу профиля
-    } else {
+        window.location.href = '/profile'; 
         alert('Неверный логин или пароль.');
     }
 });
 
-// Проверка аутентификации пользователя
 const checkAuthentication = async () => {
     try {
         const response = await fetch('/is-authenticated');
@@ -175,11 +164,9 @@ const checkAuthentication = async () => {
         const authButton = document.getElementById('auth-button');
 
         if (data.authenticated) {
-            // Если пользователь авторизован, меняем кнопку на "Личный кабинет"
             authButton.textContent = 'Личный кабинет';
             authButton.href = '/profile';
         } else {
-            // Если пользователь не авторизован, оставляем "Вход"
             authButton.textContent = 'Вход';
             authButton.href = '#';
             authButton.addEventListener('click', (e) => {
@@ -192,23 +179,19 @@ const checkAuthentication = async () => {
     }
 };
 
-// Функция для обновления корзины и отображения товаров
 const updateCart = () => {
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
     let total = 0;
 
-    // Получаем корзину из localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Если корзина пустая
     if (cart.length === 0) {
         cartItems.innerHTML = '<p>Ваша корзина пуста</p>';
         cartTotal.textContent = '0 грн';
         return;
     }
 
-    // Генерация HTML для каждого товара в корзине
     cartItems.innerHTML = cart.map(item => `
         <div class="cart-item">
             <p>${item.name} - ${item.quantity} шт. - ${item.price * item.quantity} грн.</p>
@@ -216,12 +199,10 @@ const updateCart = () => {
         </div>
     `).join('');
 
-    // Подсчет общей стоимости
     total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     cartTotal.textContent = `${total} грн`;
 };
 
-// Функция для удаления товара из корзины
 const removeFromCart = (productId) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart = cart.filter(item => item.id !== productId);
@@ -229,18 +210,15 @@ const removeFromCart = (productId) => {
     updateCart();
 };
 
-// Логика для модального окна оформления заказа
 document.addEventListener('DOMContentLoaded', () => {
     const checkoutBtn = document.getElementById('checkout-btn');
     const checkoutModal = document.getElementById('checkout-modal');
     const closeModal = document.getElementById('close-modal');
 
-    // Показать модальное окно
     checkoutBtn?.addEventListener('click', () => {
         checkoutModal.style.display = 'block';
     });
 
-    // Закрыть модальное окно
     closeModal?.addEventListener('click', () => {
         checkoutModal.style.display = 'none';
     });
@@ -251,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Обработчик отправки формы заказа
     const checkoutForm = document.getElementById('checkout-form');
     checkoutForm?.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -262,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log({ name, address, phone });
         alert('Заказ оформлен. Спасибо!');
 
-        // Закрыть модальное окно
         checkoutModal.style.display = 'none';
     });
 });

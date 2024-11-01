@@ -7,9 +7,8 @@ const multer = require('multer');
 const flash = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
-const User = require('./models/User'); // Модель пользователя
+const User = require('./models/User'); 
 
-// Инициализация приложения
 const app = express();
 
 // Подключение к MongoDB
@@ -20,21 +19,21 @@ mongoose.connect('mongodb://localhost:27017/Shop')
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('public')); // Для сервинга статических файлов
+app.use(express.static('public')); 
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Secure: false для разработки (не HTTPS)
+    cookie: { secure: false } 
 }));
-app.use(flash()); // Для отображения сообщений об ошибках
+app.use(flash()); 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Настройка хранилища для загрузки аватарок
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/uploads/avatars'); // Папка для аватарок
+        cb(null, 'public/uploads/avatars'); 
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
@@ -61,15 +60,15 @@ passport.use(new LocalStrategy({ usernameField: 'username' }, async (username, p
     }
 }));
 
-// Сериализация пользователя в сессию
+
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-// Десериализация пользователя из сессии (исправлено)
+
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await User.findById(id); // Используем async/await
+        const user = await User.findById(id); 
         done(null, user);
     } catch (err) {
         done(err);
@@ -83,15 +82,15 @@ app.get('/', (req, res) => {
 
 // Маршрут: Страница входа
 app.get('/login', (req, res) => {
-    const message = req.flash('error'); // Получаем flash-сообщение, если есть ошибка
-    res.sendFile(path.join(__dirname, 'public', 'login.html')); // Используем sendFile вместо render
+    const message = req.flash('error'); 
+    res.sendFile(path.join(__dirname, 'public', 'login.html')); 
 });
 
 // Маршрут: Вход пользователя
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/profile',  // Перенаправляем на страницу профиля после успешного входа
-    failureRedirect: '/login',    // Если ошибка, возвращаемся на страницу входа
-    failureFlash: true // Добавляем возможность вывода сообщений об ошибках
+    successRedirect: '/profile',  
+    failureRedirect: '/login',    
+    failureFlash: true 
 }));
 
 // Маршрут: Регистрация пользователя
@@ -101,9 +100,9 @@ app.post('/register', async (req, res) => {
 
     try {
         await User.register(newUser, password);
-        req.login(newUser, (err) => {  // Логиним сразу после регистрации
+        req.login(newUser, (err) => {  
             if (err) return next(err);
-            return res.redirect('/profile');  // Перенаправляем на страницу профиля после успешной регистрации
+            return res.redirect('/profile');  
         });
     } catch (err) {
         console.error('Ошибка регистрации:', err);
@@ -112,7 +111,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Маршрут для проверки аутентификации
+
 app.get('/is-authenticated', (req, res) => {
     if (req.isAuthenticated()) {
         res.json({ authenticated: true });
@@ -141,7 +140,7 @@ app.get('/profile-data', (req, res) => {
         username: req.user.username,
         email: req.user.email,
         phone: req.user.phone,
-        avatar: req.user.avatar || '/default-avatar.jpg', // Стандартная аватарка, если нет своей
+        avatar: req.user.avatar || '/default-avatar.jpg', 
         purchases: [
             { product: 'Цемент М400', quantity: 2, price: 1000 },
             { product: 'Молоток', quantity: 1, price: 150 }
@@ -177,6 +176,6 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// Запуск сервера
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
